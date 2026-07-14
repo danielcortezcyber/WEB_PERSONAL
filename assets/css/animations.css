@@ -77,3 +77,43 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+/* ===== ANIMACIONES DE ENTRADA CON GSAP (se disparan desde JS) ===== */
+/* Estas son para que los elementos aparezcan con efecto glitch */
+.glitch-reveal {
+    opacity: 0;
+}
+/* ===== EFECTO DE SCRAMBLE EN TEXTO ===== */
+.scramble-text {
+    transition: all 0.3s ease;
+}
+.scramble-text:hover {
+    animation: textScramble 0.5s infinite;
+}
+@keyframes textScramble {
+    0% { opacity: 1; }
+    10% { opacity: 0; transform: skew(5deg); }
+    20% { opacity: 1; transform: skew(-5deg); }
+    30% { opacity: 0; transform: skew(2deg); }
+    40% { opacity: 1; transform: skew(-2deg); }
+    50% { opacity: 0; transform: skew(0deg); }
+    60% { opacity: 1; transform: skew(0deg); }
+    100% { opacity: 1; }
+}
+/* ===== EFECTO DE PARALLAX PARA TARJETAS 3D ===== */
+.card-3d {
+    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+.card-3d:hover {
+    transform: rotateY(5deg) rotateX(2deg) scale(1.02);
+}
+/* ===== EFECTO DE NEÓN PULSANTE ===== */
+@keyframes neonPulse {
+    0% { box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff; }
+    50% { box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 80px #00ffff; }
+    100% { box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff; }
+}
+.neon-pulse {
+    animation: neonPulse 2s infinite;
+}
