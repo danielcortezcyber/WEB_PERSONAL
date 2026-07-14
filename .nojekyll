@@ -1,0 +1,5 @@
+# En tu terminal dentro de la carpeta WEB_PERSONAL:
+echo "" > .nojekyll
+git add .nojekyll
+git commit -m "Desactivo Jekyll para arreglar Pages"
+git push origin main
