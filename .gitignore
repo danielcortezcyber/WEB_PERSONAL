@@ -1,0 +1,7 @@
+# Ignorar archivos temporales y de sistema
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+.idea/
+.vscode/
