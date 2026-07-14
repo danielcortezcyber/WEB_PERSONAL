@@ -1,4 +1,4 @@
-// Carga de componentes (navbar y footer) con rutas absolutas
+// ===== CARGA DE COMPONENTES (navbar y footer) =====
 document.addEventListener('DOMContentLoaded', function() {
     const navbarContainer = document.getElementById('navbar');
     const footerContainer = document.getElementById('footer');
@@ -41,7 +41,30 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(err => console.warn('Error al cargar footer:', err));
 });
 
-// Smooth scroll (opcional)
+// ===== ANIMACIONES AL HACER SCROLL (Intersection Observer) =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleccionar todos los elementos con clase 'scroll-animate', 'scroll-animate-left', etc.
+    const animatedElements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale');
+
+    if (animatedElements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Opcional: dejar de observar una vez visible para mejorar rendimiento
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px' // Ajusta para activar un poco antes
+        });
+
+        animatedElements.forEach(el => observer.observe(el));
+    }
+});
+
+// ===== SMOOTH SCROLL (para enlaces internos) =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const target = document.querySelector(this.getAttribute('href'));
