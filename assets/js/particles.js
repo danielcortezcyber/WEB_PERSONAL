@@ -1,3 +1,4 @@
+// ===== PARTÍCULAS CON CAMBIO DE COLOR =====
 (function() {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
@@ -5,6 +6,8 @@
     let width, height;
     let particles = [];
     let mouse = { x: null, y: null };
+    let colorIndex = 0;
+    const colors = ['#38bdf8', '#a78bfa', '#f472b6', '#34d399', '#fbbf24'];
 
     function resize() {
         width = canvas.width = window.innerWidth;
@@ -16,6 +19,8 @@
     document.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
+        // Cambiar color al mover el mouse
+        colorIndex = (colorIndex + 1) % colors.length;
     });
 
     document.addEventListener('mouseleave', () => {
@@ -31,6 +36,7 @@
             this.speedX = (Math.random() - 0.5) * 0.5;
             this.speedY = (Math.random() - 0.5) * 0.5;
             this.opacity = Math.random() * 0.6 + 0.2;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
         }
 
         update() {
@@ -42,6 +48,8 @@
                     const force = (150 - distance) / 150;
                     this.x += dx * force * 0.02;
                     this.y += dy * force * 0.02;
+                    // Cambiar color gradualmente al acercarse al mouse
+                    this.color = colors[colorIndex];
                 }
             }
             this.x += this.speedX;
@@ -53,9 +61,9 @@
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(56, 189, 248, ${this.opacity})`;
-            ctx.shadowColor = '#38bdf8';
-            ctx.shadowBlur = 10;
+            ctx.fillStyle = this.color;
+            ctx.shadowColor = this.color;
+            ctx.shadowBlur = 15;
             ctx.fill();
             ctx.shadowBlur = 0;
         }

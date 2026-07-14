@@ -12,7 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
+    <!-- Loader -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <!-- Canvas de partículas -->
     <canvas id="particles-canvas"></canvas>
+
+    <!-- Toggle de tema (modo oscuro/claro) -->
+    <div class="theme-toggle" id="themeToggle">
+        <span class="theme-icon">🌙</span>
+    </div>
+
     <div id="navbar"></div>
 
     <header id="main-header">
